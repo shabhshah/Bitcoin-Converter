@@ -43,7 +43,7 @@ public class BitcoinConverter {
                 UserInputString = user_input.next();
                 float UserInputFloat = Float.valueOf(UserInputString);
                 float Answer = (UserInputFloat * BTCValueFloat);
-                System.out.println("The amount of USD is: " + Answer);
+                System.out.println("The amount of USD is: $" + Answer);
                 
                 System.out.print("Would you like to try again? (yes/no): ");
                 DoContinueString = user_input.next();
