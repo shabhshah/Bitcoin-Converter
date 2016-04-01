@@ -43,7 +43,7 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("BTC:USD");
+        jLabel1.setText("USD:BTC");
 
         jTextField1.setText("Enter value here");
 
@@ -185,7 +185,20 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        float BTCValue, UserInput, Answer;
+        
+        BTCValue = Float.parseFloat(jTextField1.getText());
+        UserInput = Float.parseFloat(jTextField2.getText());
+        
+        if (jRadioButton1.isSelected()) {
+            Answer = BTCValue * UserInput;
+            jTextField3.setText(String.valueOf(Answer));
+        }
+        
+        if (jRadioButton2.isSelected()) {
+            Answer = BTCValue / UserInput;
+            jTextField3.setText(String.valueOf(Answer));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
