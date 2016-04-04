@@ -5,6 +5,8 @@
  */
 package bitcoinconverter;
 
+import java.io.*;
+
 /**
  *
  * @author rishabh
@@ -31,6 +33,9 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
         convertPathDialog = new javax.swing.JDialog();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        emptyLineDialog = new javax.swing.JDialog();
+        jLabel5 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -74,6 +79,41 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(jButton2)
                 .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        emptyLineDialog.setMinimumSize(new java.awt.Dimension(400, 175));
+
+        jLabel5.setText("You left fields empty! Please add some values.");
+
+        jButton3.setText("OK");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout emptyLineDialogLayout = new javax.swing.GroupLayout(emptyLineDialog.getContentPane());
+        emptyLineDialog.getContentPane().setLayout(emptyLineDialogLayout);
+        emptyLineDialogLayout.setHorizontalGroup(
+            emptyLineDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(emptyLineDialogLayout.createSequentialGroup()
+                .addGroup(emptyLineDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(emptyLineDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5))
+                    .addGroup(emptyLineDialogLayout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jButton3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        emptyLineDialogLayout.setVerticalGroup(
+            emptyLineDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(emptyLineDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5)
+                .addGap(29, 29, 29)
+                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -179,28 +219,46 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         float BTCRatio, UserInput, Answer;
+        String BTCRatioString, UserInputString;
         
-        BTCRatio = Float.valueOf(jTextField1.getText());
-        UserInput = Float.valueOf(jTextField2.getText());
+        BTCRatioString = jTextField1.getText();
+        UserInputString = jTextField2.getText();
         
-        if (jRadioButton1.isSelected()) {
-            Answer = UserInput / BTCRatio;
-            jTextField3.setText(Float.toString(Answer) + "BTC");
+        if (BTCRatioString.length() <= 0)    {
+            emptyLineDialog.setVisible(true);
         }
         
-        else if (jRadioButton2.isSelected())    {
-            Answer = UserInput * BTCRatio;
-            jTextField3.setText("$" + Float.toString(Answer));
+        else if (UserInputString.length() <= 0) {
+            emptyLineDialog.setVisible(true);
         }
         
         else    {
-            convertPathDialog.setVisible(true);
+            BTCRatio = Float.valueOf(jTextField1.getText());
+            UserInput = Float.valueOf(jTextField2.getText());
+
+            if (jRadioButton1.isSelected()) {
+                Answer = UserInput / BTCRatio;
+                jTextField3.setText(Float.toString(Answer) + "BTC");
+            }
+
+            else if (jRadioButton2.isSelected())    {
+                Answer = UserInput * BTCRatio;
+                jTextField3.setText("$" + Float.toString(Answer));
+            }
+
+            else    {
+                convertPathDialog.setVisible(true);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         convertPathDialog.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        emptyLineDialog.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,12 +298,15 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JDialog convertPathDialog;
+    private javax.swing.JDialog emptyLineDialog;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
