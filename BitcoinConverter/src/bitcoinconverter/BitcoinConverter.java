@@ -18,7 +18,7 @@ public class BitcoinConverter {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        bitcoinConverterUI.run();
 //        Scanner user_input = new Scanner( System.in);
 //        
 //        String space = " ";
