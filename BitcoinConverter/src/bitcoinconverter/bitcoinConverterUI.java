@@ -10,7 +10,7 @@ package bitcoinconverter;
  * @author rishabh
  */
 public class bitcoinConverterUI extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form bitcoinConverterUI
      */
@@ -28,6 +28,9 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        convertPathDialog = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -38,6 +41,40 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+
+        convertPathDialog.setMinimumSize(new java.awt.Dimension(400, 175));
+
+        jLabel4.setText("You have not selected a conversion path! Please select USD:BTC or BTC:USD.");
+
+        jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout convertPathDialogLayout = new javax.swing.GroupLayout(convertPathDialog.getContentPane());
+        convertPathDialog.getContentPane().setLayout(convertPathDialogLayout);
+        convertPathDialogLayout.setHorizontalGroup(
+            convertPathDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(convertPathDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, convertPathDialogLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(255, 255, 255))
+        );
+        convertPathDialogLayout.setVerticalGroup(
+            convertPathDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(convertPathDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(31, 31, 31)
+                .addComponent(jButton2)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,13 +178,34 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        float BTCRatio, UserInput, Answer;
+        
+        BTCRatio = Float.valueOf(jTextField1.getText());
+        UserInput = Float.valueOf(jTextField2.getText());
+        
+        if (jRadioButton1.isSelected()) {
+            Answer = UserInput / BTCRatio;
+            jTextField3.setText(Float.toString(Answer) + "BTC");
+        }
+        
+        else if (jRadioButton2.isSelected())    {
+            Answer = UserInput * BTCRatio;
+            jTextField3.setText("$" + Float.toString(Answer));
+        }
+        
+        else    {
+            convertPathDialog.setVisible(true);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        convertPathDialog.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void run() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -181,10 +239,13 @@ public class bitcoinConverterUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JDialog convertPathDialog;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
